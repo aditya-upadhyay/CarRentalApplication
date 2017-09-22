@@ -21,3 +21,5 @@
 /yarn-error.log
 
 .byebug_history
+.idea/CarRentalApp.iml
+.idea/workspace.xml
