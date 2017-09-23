@@ -1,6 +1,6 @@
 class AdminsController < ApplicationController
   before_action :set_admin, only: [:show, :edit, :update, :destroy]
-  validates_uniqueness_of :email
+  validates :email, uniqueness: true
 
   # GET /admins
   # GET /admins.json
