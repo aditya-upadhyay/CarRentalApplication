@@ -1,4 +1,5 @@
 class Car < ApplicationRecord
+  has_many :reservations
   validates :license_plate_number, uniqueness: true, numericality:true , presence: true , length: {is: 7}
   validates :model, presence: true
   validates :manufacturer, presence: true
