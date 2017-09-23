@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Checkout time:</strong>
+  <%= @reservation.checkout_time %>
+</p>
+
+<p>
+  <strong>Return time:</strong>
+  <%= @reservation.return_time %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @reservation.customer %>
+</p>
+
+<p>
+  <strong>Car:</strong>
+  <%= @reservation.car %>
+</p>
+
+<%= link_to 'Edit', edit_reservation_path(@reservation) %> |
+<%= link_to 'Back', reservations_path %>

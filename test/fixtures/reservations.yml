@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  checkout_time: 2017-09-23 17:18:54
+  return_time: 2017-09-23 17:18:54
+  customer: one
+  car: one
+
+two:
+  checkout_time: 2017-09-23 17:18:54
+  return_time: 2017-09-23 17:18:54
+  customer: two
+  car: two
