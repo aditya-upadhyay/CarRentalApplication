@@ -1,5 +1,5 @@
 class Admin < ApplicationRecord
-  validates_uniqueness_of :email
+  validates :email , uniqueness: true, presence: true
   validates :name, presence: true
 
 end
