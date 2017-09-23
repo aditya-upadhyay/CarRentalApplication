@@ -43,7 +43,8 @@
 
   <div class="field">
     <%= form.label :status %>
-    <%= form.text_field :status, id: :car_status %>
+
+    <%= form.select :status, [['Available', 'Available'], ['Checkedout', 'Checkedout'],['Reserved','Reserved'],] %>
   </div>
 
   <div class="actions">
