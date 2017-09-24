@@ -5,6 +5,7 @@ class CarsController < ApplicationController
   # GET /cars.json
   def index
     @cars = Car.all
+    @cars = Car.search(params[:search]) if params[:search].present?
   end
 
   # GET /cars/1

@@ -2,6 +2,12 @@
 
 <h1>Cars</h1>
 
+<h3>Search for Cars:</h3>
+<%= form_tag cars_path, :method => 'get' do%>
+    <p>Search Cars by Manufacturer, Style, Model, Location or Status: </p>
+    <p><%=text_field_tag :search, params[:search]%> <%=submit_tag "Search"%></p>
+<%end%>
+
 <table>
   <thead>
     <tr>
@@ -17,20 +23,22 @@
   </thead>
 
   <tbody>
-    <% @cars.each do |car| %>
-      <tr>
-        <td><%= car.license_plate_number %></td>
-        <td><%= car.manufacturer %></td>
-        <td><%= car.model %></td>
-        <td><%= car.hourly_rental_rate %></td>
-        <td><%= car.style %></td>
-        <td><%= car.location %></td>
-        <td><%= car.status %></td>
-        <td><%= link_to 'Show', car %></td>
-        <td><%= link_to 'Edit', edit_car_path(car) %></td>
-        <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+    <%if @cars%>
+      <% @cars.each do |car| %>
+        <tr>
+          <td><%= car.license_plate_number %></td>
+          <td><%= car.manufacturer %></td>
+          <td><%= car.model %></td>
+          <td><%= car.hourly_rental_rate %></td>
+          <td><%= car.style %></td>
+          <td><%= car.location %></td>
+          <td><%= car.status %></td>
+          <td><%= link_to 'Show', car %></td>
+          <td><%= link_to 'Edit', edit_car_path(car) %></td>
+          <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    <%end%>
   </tbody>
 </table>
 
