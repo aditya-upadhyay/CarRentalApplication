@@ -57,6 +57,7 @@ class CustomersController < ApplicationController
     @customer.destroy
     respond_to do |format|
       format.html { redirect_to customers_url, notice: 'Customer was successfully destroyed.' }
+      Logger.log("idhar aaya")
       format.json { head :no_content }
     end
   end
@@ -64,7 +65,14 @@ class CustomersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_customer
+      if params[:id]=="sign_out"
+        #@customer.destroy
+        session.destroy
+        redirect_to new_customer_path
+      else
       @customer = Customer.find(params[:id])
+      end
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
