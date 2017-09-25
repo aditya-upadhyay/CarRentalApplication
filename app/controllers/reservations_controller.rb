@@ -27,7 +27,7 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
 
-    @reservation.customer = current_customer.id
+    @reservation.customer = current_customer
     @reservation.car_id = 1
 
     respond_to do |format|
