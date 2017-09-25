@@ -5,6 +5,7 @@ class ReservationsController < ApplicationController
   # GET /reservations.json
   def index
     @reservations = Reservation.all
+    @reservations = Reservation.search(params[:search]) if params[:search].present?
   end
 
   # GET /reservations/1
