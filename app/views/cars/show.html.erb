@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<h3>Car Details</h3>
 <p>
   <strong>License plate number:</strong>
   <%= @car.license_plate_number %>
@@ -37,4 +37,7 @@
 
 
 <%= link_to 'Edit', edit_car_path(@car) %> |
+<%= form_tag(new_reservation_path(:id=>1), {:method => 'get'}) do%>
+    <p> <%=submit_tag "Reserve Car"%></p>
+<%end%>
 <%= link_to 'Back', cars_path %>

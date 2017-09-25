@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :customers
   resources :admins
   resources :cars
+  resources :reservations
   root 'customers#home'
   get '/cars', to: 'cars#index'
 

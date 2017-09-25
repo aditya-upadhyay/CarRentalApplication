@@ -27,6 +27,9 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
 
+    @reservation.customer = current_customer.id
+    @reservation.car_id = 1
+
     respond_to do |format|
       if @reservation.save
         format.html { redirect_to @reservation, notice: 'Reservation was successfully created.' }
