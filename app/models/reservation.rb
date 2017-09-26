@@ -39,10 +39,6 @@ class Reservation < ApplicationRecord
         errors.add(:return_time, "- Minimum reservation time is 1 hour")
       end
       end
-
-    else if difference_in_days*24>24
-           errors.add(:return_time, "-Maximum reservation of 10 hours is allowed")
-         end
     end
   end
   def return_after_booking
