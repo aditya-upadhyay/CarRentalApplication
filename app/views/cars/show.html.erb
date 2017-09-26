@@ -35,9 +35,9 @@
   <%= @car.status %>
 </p>
 
-
-<%= link_to 'Edit', edit_car_path(@car) %> |
+<% if false %>
+<%= link_to 'Edit', edit_car_path(@car) %>
+<% end %>
 <%= form_tag(new_reservation_path(:id=>1), {:method => 'get'}) do%>
     <p> <%=submit_tag "Reserve Car"%></p>
-<%end%>
-<%= link_to 'Back', cars_path %>
+<%end%> | <%= link_to 'Back', cars_path %>

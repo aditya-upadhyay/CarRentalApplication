@@ -18,16 +18,22 @@
       <tr>
         <td><%= reservation.checkout_time %></td>
         <td><%= reservation.return_time %></td>
-        <td><%= reservation.customer %></td>
-        <td><%= reservation.car %></td>
+        <td><%= reservation.customer.name %></td>
+        <td>
+          Model: <%= reservation.car.model %>;
+          <br>Plate number:<%= reservation.car.license_plate_number %>
+        </td>
         <td><%= link_to 'Show', reservation %></td>
         <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
+        <% if false %>
         <td><%= link_to 'Destroy', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
+<% if false %>
 <%= link_to 'New Reservation', new_reservation_path %>
+<% end %>
