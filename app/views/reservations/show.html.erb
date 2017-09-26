@@ -12,12 +12,12 @@
 
 <p>
   <strong>Customer:</strong>
-  <%= @reservation.customer %>
+  <%= @reservation.customer.name %>
 </p>
 
 <p>
   <strong>Car:</strong>
-  <%= @reservation.car %>
+  Model: <%= @reservation.car.model %>; Plate number:<%= @reservation.car.license_plate_number %>
 </p>
 
 <%= link_to 'Edit', edit_reservation_path(@reservation) %> |
