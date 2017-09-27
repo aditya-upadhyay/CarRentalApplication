@@ -42,7 +42,5 @@ class Reservation < ApplicationRecord
     end
   end
   def return_after_booking
-
   end
-
 end
