@@ -1,22 +1,17 @@
 # README
 
-------------------------------------------------------------------------------------------------------
-																					USERS
----------------------------------------------------------------------------------------------------------
-
+------------------------------------------*USERS*----------------------------------------------------
 1) Customers
 
-------------------------------------------------------------------------------------------------------
-																					FUNCTIONALITY
----------------------------------------------------------------------------------------------------------
+------------------------------------------*FUNCTIONALITY*----------------------------------------------------
 1) Customers:
 
-•	New customer can sign up for an account
-•	Customers with an account:
-    o	Can sign in email id
-    o	Can search for cars based on specific car attributes
-    o	Can view car detail
-    o	Reserve a car with time constrains
+*New customer can sign up for an account
+*Customers with an account:
+	- Can sign in email id
+	- Can search for cars based on specific car attributes
+	- Can view car detail
+	- Reserve a car with time constrains
 
 ---------------------------------------------------------------------------------------------------------
 
