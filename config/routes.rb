@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   devise_for :customers
   resources :customers
-  resources :admins
   resources :cars
   resources :reservations
   root 'customers#home'
