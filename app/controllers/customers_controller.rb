@@ -7,6 +7,10 @@ class CustomersController < ApplicationController
     @customers = Customer.all
   end
 
+  # GET /home
+  def home
+
+  end
   # GET /customers/1
   # GET /customers/1.json
   def show
