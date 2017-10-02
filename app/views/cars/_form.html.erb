@@ -34,6 +34,8 @@
   <div class="field">
     <%= form.label :style %>
     <%= form.text_field :style, id: :car_style %>
+    <%= f.select "style", options_for_select(["Coupe", "Sedan", "SUV"]), include_blank: false %>
+
   </div>
 
   <div class="field">
