@@ -11,6 +11,7 @@ class CarsController < ApplicationController
   # GET /cars/1
   # GET /cars/1.json
   def show
+    @user_active_reservation = Reservation.find_user_reservation(current_customer.id)
   end
 
   # GET /cars/new
