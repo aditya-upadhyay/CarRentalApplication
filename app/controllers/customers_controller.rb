@@ -64,7 +64,7 @@ class CustomersController < ApplicationController
 
   # GET /home
   def home
-
+    @reservation = Reservation.find_user_reservation(current_customer.id)
   end
 
   private

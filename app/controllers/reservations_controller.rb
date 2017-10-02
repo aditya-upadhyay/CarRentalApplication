@@ -22,13 +22,33 @@ class ReservationsController < ApplicationController
   def edit
   end
 
+  #GET /checkout
+  def checkout
+    @reservation = Reservation.find_by_id(params[:id])
+    Car.find_by_id(@reservation.car_id).update_attribute(:status, 'Checkedout')
+    flash[:notice]='Car successfully checkout.'
+    redirect_to root_path
+  end
+
+  #GET /return_car
+  def return_car
+    @reservation = Reservation.find_by_id(params[:id])
+    Car.find_by_id(@reservation.car_id).update_attribute(:status, 'Available')
+    flash[:notice]='Car successfully returned.'
+    redirect_to root_path
+  end
+
   # POST /reservations
   # POST /reservations.json
   def create
     @reservation = Reservation.new(reservation_params)
-
     @reservation.customer = current_customer
     @reservation.car_id = 1
+
+    Car.find_by_id(1).update_attribute(:status, "Reserved")
+    # @car = Car.where(["id = ?",1])
+    # @car.status = "Reserved"
+    # @car.save
 
     respond_to do |format|
       if @reservation.save

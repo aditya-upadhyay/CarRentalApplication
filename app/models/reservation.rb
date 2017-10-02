@@ -10,6 +10,11 @@ class Reservation < ApplicationRecord
 
   belongs_to :customer
   belongs_to :car
+
+  def self.find_user_reservation(user_id)
+    self.where(["customer_id = ?",user_id]).where(car_id: Car.where(status:["Checkedout","Reserved"])).first
+  end
+
   def self.search(search_term)
     if search_term
       self.where(["customer_id like ?",

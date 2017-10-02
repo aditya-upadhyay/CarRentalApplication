@@ -3,3 +3,31 @@
 <td><%= link_to 'Search Cars', cars_path%></td>
 <td><%= link_to 'View Checkout History', reservations_path%></td>
 
+<%if @reservation.present? %>
+<p>
+  <strong>Checkout time:</strong>
+  <%= @reservation.checkout_time %>
+</p>
+
+<p>
+  <strong>Return time:</strong>
+  <%= @reservation.return_time %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @reservation.customer.name %>
+</p>
+
+<p>
+  <strong>Car:</strong>
+  Model: <%= @reservation.car.model %>; Plate number:<%= @reservation.car.license_plate_number %>
+</p>
+    <%if @reservation.car.status == 'Reserved'%>
+        <%= link_to 'Checkout car', checkout_path(@reservation.id)%>
+    <%end%>
+
+    <%if @reservation.car.status == 'Checkedout'%>
+        <%= link_to 'Return car', return_car_path(@reservation.id)%>
+    <%end%>
+<%end%>
