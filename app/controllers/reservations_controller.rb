@@ -16,6 +16,7 @@ class ReservationsController < ApplicationController
   # GET /reservations/new
   def new
     @reservation = Reservation.new
+    @reserve_car_id = params[:id]
   end
 
   # GET /reservations/1/edit
@@ -41,14 +42,13 @@ class ReservationsController < ApplicationController
   # POST /reservations
   # POST /reservations.json
   def create
+
     @reservation = Reservation.new(reservation_params)
     @reservation.customer = current_customer
-    @reservation.car_id = 1
 
-    Car.find_by_id(1).update_attribute(:status, "Reserved")
-    # @car = Car.where(["id = ?",1])
-    # @car.status = "Reserved"
-    # @car.save
+    @reservation.car_id = reservation_params[:car_id]
+
+    Car.find_by_id(reservation_params[:car_id]).update_attribute(:status, "Reserved")
 
     respond_to do |format|
       if @reservation.save

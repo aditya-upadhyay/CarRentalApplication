@@ -38,8 +38,8 @@
 <% if false %>
 <%= link_to 'Edit', edit_car_path(@car) %>
 <% end %>
-<%if @user_active_reservation.nil? %>
-  <%= form_tag(new_reservation_path(params[:id]), {:method => 'get'}) do%>
+<%if @car.status == 'Available' && @user_active_reservation.nil? %>
+  <%= form_tag(reservation_new_path(:id => params[:id]), {:method => 'get'}) do%>
       <p> <%=submit_tag "Reserve Car"%></p>
   <%end%>
 <%end%>

@@ -20,7 +20,12 @@
     <%= form.datetime_select :return_time, id: :reservation_return_time %>
   </div>
 
-  <div class="actions">
+    <div class="field">
+      <%=@reserve_car%>
+      <%= form.hidden_field :car_id, :value => @reserve_car_id%>
+    </div>
+
+    <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>

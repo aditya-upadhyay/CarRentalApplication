@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root 'customers#home'
   get '/cars', to: 'cars#index'
   get '/home', to: 'customers#home'
-  get '/reservations/new', to: 'reservations#new'
+  get '/reservation_new/:id', to: 'reservations#new', :as => 'reservation_new'
   get '/checkout/:id' => 'reservations#checkout', :as =>  'checkout'
   get '/return_car/:id' => 'reservations#return_car', :as =>  'return_car'
   get '/cars/[:id]', to: 'cars#show'
