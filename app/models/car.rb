@@ -8,6 +8,12 @@ class Car < ApplicationRecord
   validates :style , presence: true
   validates :status ,presence: true, inclusion: { in: %w(Available Checkedout Reserved),
                                                  message: "%{value} is not a valid status"}
+  after_initialize :init
+
+  def init
+    self.hourly_rental_rate ||= 0.0
+  end
+
   def self.search(search_term)
     if search_term
       self.where(["manufacturer like ? or model like ? or style like ? or location like ? or status like ?",

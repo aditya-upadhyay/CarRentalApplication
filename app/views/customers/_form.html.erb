@@ -26,10 +26,12 @@
     <%= form.text_field :password, id: :customer_password %>
   </div>
 
+    <%if false%>
   <div class="field">
     <%= form.label :rental_charges %>
     <%= form.text_field :rental_charges, id: :customer_rental_charges %>
   </div>
+  <%end%>
 
   <div class="actions">
     <%= form.submit %>

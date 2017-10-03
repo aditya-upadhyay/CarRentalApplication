@@ -43,6 +43,11 @@ class Reservation < ApplicationRecord
       end
     end
   end
+
+  def reservation_duration
+    ((return_time - checkout_time) * 24).to_f
+  end
+
   def return_after_booking
   end
 end

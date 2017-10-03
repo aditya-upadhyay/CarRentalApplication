@@ -37,7 +37,13 @@ class ReservationsController < ApplicationController
   #GET /return_car
   def return_car
     @reservation = Reservation.find_by_id(params[:id])
-    Car.find_by_id(@reservation.car_id).update_attribute(:status, 'Available')
+    @car = Car.find_by_id(@reservation.car_id)
+    reservation_duration = @reservation.reservation_duration
+    @rental_charges = reservation_duration * @car.hourly_rental_rate
+    @car.update_attribute(:status, 'Available')
+    @user = Customer.find_by_id(@reservation.customer_id)
+    @user.update_attribute(:rental_charges, @rental_charges+@user.rental_charges)
+
     flash[:notice]='Car successfully returned.'
     redirect_to root_path
   end
