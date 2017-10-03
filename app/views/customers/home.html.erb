@@ -3,6 +3,12 @@
 <td><%= link_to 'Search Cars', cars_path%></td>
 <td><%= link_to 'View Checkout History', reservations_path%></td>
 
+<% if current_customer.role_check == 'admin' %>
+    <p> This is admin </p>
+    <%else%>
+      <p> This is customer </p>
+   <%end%>
+
 <%if @reservation.present? %>
 <p>
   <strong>Checkout time:</strong>
