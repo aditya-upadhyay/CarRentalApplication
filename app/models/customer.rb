@@ -1,10 +1,13 @@
 class Customer < ApplicationRecord
   has_many :reservations
   validates :email, uniqueness: true, presence: true
+  validates :role_check ,presence: true, inclusion: { in: %w(customer admin superadmin),
+                                                  message: "%{value} is not a valid user role"}
   after_initialize :init
 
   def init
     self.rental_charges ||= 0.0
+    self.role_check ||= 'customer'
   end
 
   #validates :name, presence: true
