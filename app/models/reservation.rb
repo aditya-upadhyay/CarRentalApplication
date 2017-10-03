@@ -15,11 +15,8 @@ class Reservation < ApplicationRecord
     self.where(["customer_id = ?",user_id]).where(car_id: Car.where(status:["Checkedout","Reserved"])).first
   end
 
-  def self.search(search_term)
-    if search_term
-      self.where(["customer_id like ?",
-                  "%#{search_term}%"])
-    end
+  def self.find_by_customer(user_id)
+      self.where(["customer_id = ?", user_id])
   end
 
   def checkout_date_cannot_be_in_the_past

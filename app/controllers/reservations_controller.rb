@@ -4,8 +4,11 @@ class ReservationsController < ApplicationController
   # GET /reservations
   # GET /reservations.json
   def index
-    @reservations = Reservation.all
-    @reservations = Reservation.search(params[:search]) if params[:search].present?
+     @reservations = Reservation.find_by_customer(current_customer)
+     if @reservations.empty?
+       flash[:notice] = "No reservations made"
+     end
+
   end
 
   # GET /reservations/1
