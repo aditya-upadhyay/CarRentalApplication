@@ -3,7 +3,6 @@
 
 <% if current_customer.role_check != 'customer' %>
     <p> Manage Reservations </p>
-    <p> Edit Profile </p>
     <%= link_to 'Manage other Admins', manage_admins_path%>
 
     <%= link_to 'Manage Cars', cars_path%>

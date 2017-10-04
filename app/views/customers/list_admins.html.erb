@@ -3,6 +3,7 @@
 
 <h1><%=@user_type%></h1>
 
+    <%if @customers.present?%>
 <table>
   <thead>
   <tr>
@@ -23,4 +24,8 @@
   <% end %>
   </tbody>
 </table>
+        <%else%>
+          <h3>No other admins</h3>
+        <%end%>
+    <%= link_to 'Back to manage admins', manage_admins_path%>
 <%end%>

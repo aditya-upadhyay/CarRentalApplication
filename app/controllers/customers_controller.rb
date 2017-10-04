@@ -28,8 +28,27 @@ class CustomersController < ApplicationController
     end
   end
 
+  def new_admin
+    @customer = Customer.new
+    @user_type = 'Admin'
+  end
+
   # GET /customers/1/edit
   def edit
+  end
+
+  def create_admin
+    @customer = Customer.new(customer_params)
+    @customer.role_check = 'admin'
+    respond_to do |format|
+      if @customer.save
+        format.html { redirect_to manage_admins_url, notice: 'Customer was successfully created.' }
+        format.json { render :show, status: :created, location: @customer }
+      else
+        format.html { render :new }
+        format.json { render json: @customer.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # POST /customers

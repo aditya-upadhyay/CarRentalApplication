@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   get '/cars/[:id]', to: 'cars#show'
   get '/manage_admins', to: 'customers#manage_admins'
   get '/list_admins', to: 'customers#list_admins'
-  
+  get '/new_admin', to: 'customers#new_admin'
+
+  post '/create_admin', to: 'customers#create_admin', :as => 'create_admin'
   #root 'customers#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

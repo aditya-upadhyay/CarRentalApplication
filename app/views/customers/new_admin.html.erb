@@ -1,0 +1,26 @@
+<%if current_customer != 'customer'%>
+<h1>New <%= @user_type%></h1>
+
+<%= form_for @customer, :url => create_admin_path, :html => {:method => :post} do |form| %>
+
+    <div class="field">
+      <%= form.label :email %>
+      <%= form.text_field :email, id: :customer_email %>
+    </div>
+
+    <div class="field">
+      <%= form.label :name %>
+      <%= form.text_field :name, id: :customer_name %>
+    </div>
+
+    <div class="field">
+      <%= form.label :password %>
+      <%= form.password_field :password, id: :customer_password %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+<% end %>
+    <%= link_to 'Back to manage admins', manage_admins_path%>
+<%end%>

@@ -1,7 +1,7 @@
 
 <% if current_customer.role_check != 'customer' %>
     <h2>Manage Admins</h2>
-    <%= link_to 'Create new Admin', new_customer_path%>
+    <%= link_to 'Create new Admin', new_admin_path%>
     <%= link_to 'View other Admins', list_admins_path%>
 <%end%>
 
