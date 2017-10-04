@@ -43,12 +43,15 @@ class ReservationsController < ApplicationController
   def return_car
     @reservation = Reservation.find_by_id(params[:id])
     @car = Car.find_by_id(@reservation.car_id)
+    @user = Customer.find_by_id(@reservation.customer_id)
+
     reservation_duration = ((@reservation.return_time-@reservation.checkout_time)/3600).to_f;
     @rental_charges = reservation_duration * @car.hourly_rental_rate
-    @car.update_attribute(:status, 'Available')
-    @user = Customer.find_by_id(@reservation.customer_id)
-    @user.update_attribute(:rental_charges, @rental_charges+@user.rental_charges)
 
+
+    @car.update_attribute(:status, 'Available')
+    @user.update_attribute(:rental_charges, @rental_charges+@user.rental_charges)
+    @reservation.update_attributes(:active => false, :return_time => DateTime.current)
     flash[:notice]='Car successfully returned.'
     redirect_to root_path
   end
@@ -59,7 +62,7 @@ class ReservationsController < ApplicationController
 
     @reservation = Reservation.new(reservation_params)
     @reservation.customer = current_customer
-
+    @reservation.active = true
     @reservation.car_id = reservation_params[:car_id]
 
     Car.find_by_id(reservation_params[:car_id]).update_attribute(:status, "Reserved")

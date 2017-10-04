@@ -11,8 +11,14 @@ class Reservation < ApplicationRecord
   belongs_to :customer
   belongs_to :car
 
+  after_initialize :init
+
+  def init
+    self.active ||= false
+  end
+
   def self.find_user_reservation(user_id)
-    self.where(["customer_id = ?",user_id]).where(car_id: Car.where(status:["Checkedout","Reserved"])).first
+    self.where(["customer_id = ? and active = ?",user_id, true]).where(car_id: Car.where(status:["Checkedout","Reserved"])).first
   end
 
   def self.find_by_customer(user_id)
