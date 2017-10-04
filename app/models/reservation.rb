@@ -31,21 +31,22 @@ class Reservation < ApplicationRecord
     end
   end
   def booking_span
-    difference_in_days = (return_time - checkout_time).to_i
-    if difference_in_days==0
-      difference_in_time = (return_time.to_time-checkout_time.to_time).to_i
-      if difference_in_time >10
-       errors.add(:return_time, "- Car can be checkedout only for 10 hours")
-      else
-      if difference_in_time<1
-        errors.add(:return_time, "- Minimum reservation time is 1 hour")
-      end
+    difference_in_time= ((return_time.to_time - checkout_time.to_time).to_i )/60
+    puts "-------"
+    puts "-------"
+    puts "-------"
+    puts difference_in_time
+    if difference_in_time > 600
+      errors.add(:checkout_time, "Booking span can not be more than 10 hours");
+    else
+      if difference_in_time <60
+        errors.add(:checkout_time, "Booking span can not be less than 1 hours");
       end
     end
   end
 
-  def reservation_duration
-    ((return_time - checkout_time) * 24).to_f
+  def self.reservation_duration
+    ((return_time-checkout_time)*24).to_f
   end
 
   def return_after_booking

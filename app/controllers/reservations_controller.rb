@@ -38,7 +38,7 @@ class ReservationsController < ApplicationController
   def return_car
     @reservation = Reservation.find_by_id(params[:id])
     @car = Car.find_by_id(@reservation.car_id)
-    reservation_duration = @reservation.reservation_duration
+    reservation_duration = @reservation.checkout_time-@reservation.return_time
     @rental_charges = reservation_duration * @car.hourly_rental_rate
     @car.update_attribute(:status, 'Available')
     @user = Customer.find_by_id(@reservation.customer_id)
