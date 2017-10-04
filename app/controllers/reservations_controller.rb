@@ -4,11 +4,14 @@ class ReservationsController < ApplicationController
   # GET /reservations
   # GET /reservations.json
   def index
+    if(current_customer.role_check == 'admin')
+      @reservations = Reservation.all
+    else
      @reservations = Reservation.find_by_customer(current_customer)
      if @reservations.empty?
        flash[:notice] = "No reservations made"
      end
-
+    end
   end
 
   # GET /reservations/1
@@ -24,6 +27,8 @@ class ReservationsController < ApplicationController
 
   # GET /reservations/1/edit
   def edit
+    puts @reservation.inspect
+    @reserve_car_id = @reservation.car_id
   end
 
   #GET /checkout
@@ -73,6 +78,7 @@ class ReservationsController < ApplicationController
   # PATCH/PUT /reservations/1
   # PATCH/PUT /reservations/1.json
   def update
+    puts @reservation.inspect
     respond_to do |format|
       if @reservation.update(reservation_params)
         format.html { redirect_to @reservation, notice: 'Reservation was successfully updated.' }

@@ -10,6 +10,7 @@
       <th>Return time</th>
       <th>Customer</th>
       <th>Car</th>
+      <th>Status</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -24,7 +25,16 @@
           Model: <%= reservation.car.model %>;
           <br>Plate number:<%= reservation.car.license_plate_number %>
         </td>
+        <td>
+          <% if Time.now > reservation.return_time %>
+            Completed
+              <% else %>
+          Active
+          <%end%>
+        </td>
         <td><%= link_to 'Show', reservation %></td>
+        <td><%= link_to 'Destroy', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
         <%if false %>
         <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
         <td><%= link_to 'Destroy', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -2,10 +2,13 @@
 
 
 <% if current_customer.role_check != 'customer' %>
-    <p> Manage Reservations </p>
+
+    
     <%= link_to 'Manage other Admins', manage_admins_path%>
 
     <%= link_to 'Manage Cars', cars_path%>
+
+    <td><%= link_to 'Manage Reservations', reservations_path%></td>
 
     <p> Manage Customers </p>
 
