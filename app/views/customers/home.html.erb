@@ -1,39 +1,49 @@
 <p id="notice"><%= notice %></p>
-<h2>Rental Charge: <%=@current_user.rental_charges%></h2>
-<td><%= link_to 'Search Cars', cars_path%></td>
-<td><%= link_to 'View Checkout History', reservations_path%></td>
 
-<% if current_customer.role_check == 'admin' %>
-    <p> This is admin </p>
-    <%else%>
-      <p> This is customer </p>
-   <%end%>
 
-<%if @reservation.present? %>
-<p>
-  <strong>Checkout time:</strong>
-  <%= @reservation.checkout_time %>
-</p>
+<% if current_customer.role_check != 'customer' %>
+    <p> Manage Reservstions </p>
+    <p> Edit Profile </p>
+    <p> Manage Admins </p>
+    <p> Manage Cars </p>
+    <p> Manage Customers </p>
 
-<p>
-  <strong>Return time:</strong>
-  <%= @reservation.return_time %>
-</p>
 
-<p>
-  <strong>Customer:</strong>
-  <%= @reservation.customer.name %>
-</p>
-
-<p>
-  <strong>Car:</strong>
-  Model: <%= @reservation.car.model %>; Plate number:<%= @reservation.car.license_plate_number %>
-</p>
-    <%if @reservation.car.status == 'Reserved'%>
-        <%= link_to 'Checkout car', checkout_path(@reservation.id)%>
+    <% if current_customer.role_check != 'admin' %>
+        <p> Manage Superadmins</p>
     <%end%>
+<%else%>
 
-    <%if @reservation.car.status == 'Checkedout'%>
-        <%= link_to 'Return car', return_car_path(@reservation.id)%>
+      <h2>Rental Charge: <%=@current_user.rental_charges%></h2>
+      <td><%= link_to 'Search Cars', cars_path%></td>
+      <td><%= link_to 'View Checkout History', reservations_path%></td>
+    <%if @reservation.present? %>
+        <p>
+          <strong>Checkout time:</strong>
+          <%= @reservation.checkout_time %>
+        </p>
+
+        <p>
+          <strong>Return time:</strong>
+          <%= @reservation.return_time %>
+        </p>
+
+        <p>
+          <strong>Customer:</strong>
+          <%= @reservation.customer.name %>
+        </p>
+
+        <p>
+          <strong>Car:</strong>
+          Model: <%= @reservation.car.model %>; Plate number:<%= @reservation.car.license_plate_number %>
+        </p>
+        <%if @reservation.car.status == 'Reserved'%>
+            <%= link_to 'Checkout car', checkout_path(@reservation.id)%>
+        <%end%>
+
+        <%if @reservation.car.status == 'Checkedout'%>
+            <%= link_to 'Return car', return_car_path(@reservation.id)%>
+        <%end%>
     <%end%>
 <%end%>
+
