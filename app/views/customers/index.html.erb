@@ -14,6 +14,7 @@
 
   <tbody>
     <% @customers.each do |customer| %>
+      <% if customer.role_check == "customer" %>
       <tr>
         <td><%= customer.email %></td>
         <td><%= customer.name %></td>

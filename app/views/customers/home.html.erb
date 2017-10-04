@@ -8,9 +8,9 @@
 
     <%= link_to 'Manage Cars', cars_path%>
 
-    <td><%= link_to 'Manage Reservations', reservations_path%></td>
+    <%= link_to 'Manage Reservations', reservations_path%>
 
-    <p> Manage Customers </p>
+    <%= link_to 'Manage Customers', customers_path %>
 
 
     <% if current_customer.role_check != 'admin' %>
