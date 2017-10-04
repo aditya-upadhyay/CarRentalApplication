@@ -1,5 +1,5 @@
 class Customer < ApplicationRecord
-  has_many :reservations
+  has_many :reservations, :dependent => :destroy
   validates :email, uniqueness: true, presence: true
   validates :role_check ,presence: true, inclusion: { in: %w(customer admin superadmin),
                                                   message: "%{value} is not a valid user role"}
@@ -8,6 +8,10 @@ class Customer < ApplicationRecord
   def init
     self.rental_charges ||= 0.0
     self.role_check ||= 'customer'
+  end
+
+  def self.find_other_admins(id)
+    self.where.not(["id = ?", id]).where(["role_check = ?", 'admin'])
   end
 
   #validates :name, presence: true

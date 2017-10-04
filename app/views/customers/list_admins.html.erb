@@ -1,0 +1,26 @@
+<%if current_customer.role_check != 'customer'%>
+<p id="notice"><%= notice %></p>
+
+<h1><%=@user_type%></h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Email</th>
+    <th>Name</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @customers.each do |customer| %>
+      <tr>
+        <td><%= customer.email %></td>
+        <td><%= customer.name %></td>
+        <td><%= link_to 'Show', customer %></td>
+        <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<%end%>

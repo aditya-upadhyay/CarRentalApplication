@@ -1,7 +1,7 @@
 <%= form_with(model: customer, local: true) do |form| %>
   <% if customer.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(customer.errors.count, "error") %> prohibited this customer from being saved:</h2>
+      <h2><%= pluralize(customer.errors.count, "error") %> prohibited this <%= @user_type%> from being saved:</h2>
 
       <ul>
       <% customer.errors.full_messages.each do |message| %>
@@ -23,15 +23,8 @@
 
   <div class="field">
     <%= form.label :password %>
-    <%= form.text_field :password, id: :customer_password %>
+    <%= form.password_field :password, id: :customer_password %>
   </div>
-
-    <%if false%>
-  <div class="field">
-    <%= form.label :rental_charges %>
-    <%= form.text_field :rental_charges, id: :customer_rental_charges %>
-  </div>
-  <%end%>
 
   <div class="actions">
     <%= form.submit %>

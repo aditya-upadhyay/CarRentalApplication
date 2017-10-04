@@ -2,9 +2,9 @@
 
 
 <% if current_customer.role_check != 'customer' %>
-    <p> Manage Reservstions </p>
+    <p> Manage Reservations </p>
     <p> Edit Profile </p>
-    <p> Manage Admins </p>
+    <%= link_to 'Manage other Admins', manage_admins_path%>
     <p> Manage Cars </p>
     <p> Manage Customers </p>
 
@@ -46,4 +46,3 @@
         <%end%>
     <%end%>
 <%end%>
-

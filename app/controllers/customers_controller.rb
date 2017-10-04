@@ -5,6 +5,13 @@ class CustomersController < ApplicationController
   # GET /customers.json
   def index
     @customers = Customer.all
+    @user_type = 'Customers'
+  end
+
+  # GET /list_admins
+  def list_admins
+    @customers = Customer.find_other_admins(current_customer.id)
+    @user_type = 'Admins'
   end
 
   # GET /customers/1
@@ -15,6 +22,10 @@ class CustomersController < ApplicationController
   # GET /customers/new
   def new
     @customer = Customer.new
+    @user_type = 'Customer'
+    if current_customer.role_check == 'admin'
+      @user_type = 'Admin'
+    end
   end
 
   # GET /customers/1/edit
@@ -25,7 +36,9 @@ class CustomersController < ApplicationController
   # POST /customers.json
   def create
     @customer = Customer.new(customer_params)
-
+    if @current_user.role_check == 'admin'
+      @customer.role_check = 'admin'
+    end
     respond_to do |format|
       if @customer.save
         format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
@@ -56,8 +69,11 @@ class CustomersController < ApplicationController
   def destroy
     @customer.destroy
     respond_to do |format|
-      format.html { redirect_to customers_url, notice: 'Customer was successfully deleted.' }
-
+      if current_customer.role_check != 'customer'
+        format.html { redirect_to root_url, notice: 'User was successfully deleted.' }
+      else
+        format.html { redirect_to customers_url, notice: 'Customer was successfully deleted.' }
+      end
       format.json { head :no_content }
     end
   end
@@ -68,6 +84,10 @@ class CustomersController < ApplicationController
     @current_user = Customer.find_by_id(current_customer.id)
   end
 
+  #GET /manage_admins
+  def manage_admins
+
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_customer

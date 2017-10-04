@@ -1,3 +1,4 @@
+<%if current_customer.role_check != 'customer'%>
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -10,15 +11,11 @@
   <%= @customer.name %>
 </p>
 
-<p>
-  <strong>Password:</strong>
-  <%= @customer.password %>
-</p>
-
-<p>
-  <strong>Rental charges:</strong>
-  <%= @customer.rental_charges %>
-</p>
-
+<%if current_customer.role_check == 'admin'%>
+    <%= link_to 'Back to admins list', list_admins_path%>
+<%end%>
+<%if false%>
 <%= link_to 'Edit', edit_customer_path(@customer) %> |
 <%= link_to 'Back', customers_path %>
+<%end%>
+<%end%>

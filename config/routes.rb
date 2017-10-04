@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   get '/checkout/:id' => 'reservations#checkout', :as =>  'checkout'
   get '/return_car/:id' => 'reservations#return_car', :as =>  'return_car'
   get '/cars/[:id]', to: 'cars#show'
-
+  get '/manage_admins', to: 'customers#manage_admins'
+  get '/list_admins', to: 'customers#list_admins'
+  
   #root 'customers#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
