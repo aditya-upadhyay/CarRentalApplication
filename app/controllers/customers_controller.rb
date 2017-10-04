@@ -23,9 +23,6 @@ class CustomersController < ApplicationController
   def new
     @customer = Customer.new
     @user_type = 'Customer'
-    if current_customer.role_check == 'admin'
-      @user_type = 'Admin'
-    end
   end
 
   def new_admin
@@ -55,9 +52,6 @@ class CustomersController < ApplicationController
   # POST /customers.json
   def create
     @customer = Customer.new(customer_params)
-    if @current_user.role_check == 'admin'
-      @customer.role_check = 'admin'
-    end
     respond_to do |format|
       if @customer.save
         format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
