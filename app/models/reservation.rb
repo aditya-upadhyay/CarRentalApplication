@@ -32,19 +32,21 @@ class Reservation < ApplicationRecord
   end
   def booking_span
     difference_in_time= ((return_time.to_time - checkout_time.to_time).to_i )/60
-    puts "-------"
-    puts "-------"
-    puts "-------"
+
     puts difference_in_time
     if difference_in_time > 600
-      errors.add(:checkout_time, "Booking span can not be more than 10 hours");
+      errors.add(:checkout_time, ": Booking span can not be more than 10 hours");
     else
       if difference_in_time <60
-        errors.add(:checkout_time, "Booking span can not be less than 1 hours");
+        errors.add(:checkout_time, ": Booking span can not be less than 1 hours");
       end
     end
   end
   
   def return_after_booking
+    difference_in_time = (return_time.to_time - checkout_time.to_time).to_i
+    if(difference_in_time<=0)
+      errors.add(:return_time, "should be after checkout time")
+    end
   end
 end
