@@ -34,10 +34,14 @@
           <td><%= car.location %></td>
           <td><%= car.status %></td>
           <td><%= link_to 'Show', car %></td>
-          <% if false %>
+          <% if current_customer.role_check != 'customer' %>
             <td><%= link_to 'Edit', edit_car_path(car) %></td>
+              <% if car.status!='Available'%>
+                  <td>Car cannot be deleted</td>
+                  <% else %>
             <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <% end %>
+          <%end %>
         </tr>
       <% end %>
     <%end%>
