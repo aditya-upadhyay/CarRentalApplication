@@ -1,5 +1,6 @@
 class Customer < ApplicationRecord
   has_many :reservations, :dependent => :destroy
+  validates :name, presence: true
   validates :email, uniqueness: true, presence: true
   validates :role_check ,presence: true, inclusion: { in: %w(customer admin superadmin),
                                                   message: "%{value} is not a valid user role"}
