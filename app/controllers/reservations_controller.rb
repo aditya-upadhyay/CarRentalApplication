@@ -51,7 +51,8 @@ class ReservationsController < ApplicationController
 
     @car.update_attribute(:status, 'Available')
     @user.update_attribute(:rental_charges, @rental_charges+@user.rental_charges)
-    @reservation.update_attributes(:active => false, :return_time => DateTime.current)
+    @reservation.update_attribute(:active, false)
+    @reservation.update_attribute(:return_time, DateTime.now)
     flash[:notice]='Car successfully returned.'
     redirect_to root_path
   end

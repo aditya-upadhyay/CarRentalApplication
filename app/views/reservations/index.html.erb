@@ -26,7 +26,7 @@
           <br>Plate number:<%= reservation.car.license_plate_number %>
         </td>
         <td>
-          <% if Time.now > reservation.return_time %>
+          <% if DateTime.now > reservation.return_time %>
             Completed
               <% else %>
           Active

@@ -18,7 +18,7 @@ class Reservation < ApplicationRecord
   end
 
   def self.find_user_reservation(user_id)
-    self.where(["customer_id = ? and active = ?",user_id, true]).where(car_id: Car.where(status:["Checkedout","Reserved"])).first
+    self.where(["customer_id = ? and active = ?",user_id, true]).where(car_id: Car.where(status:["Checkedout","Reserved"])).last
   end
 
   def self.find_by_customer(user_id)
