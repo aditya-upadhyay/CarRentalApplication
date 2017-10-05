@@ -41,7 +41,12 @@
     <%= form.text_field :location, id: :car_location %>
   </div>
 
-  <div class="actions">
+    <div class="field">
+      <%= form.label :status %>
+      <%= form.select :status, [['Available', 'Available'], ['Checkedout', 'Checkedout'],['Reserved','Reserved'],] %>
+    </div>
+
+    <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
