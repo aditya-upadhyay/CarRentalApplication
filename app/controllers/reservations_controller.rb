@@ -64,10 +64,9 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
     @reservation.customer = current_customer
     @reservation.car_id = 1
-
+    @reservation.active = true
     respond_to do |format|
       if @reservation.save
-        @reservation.active = true
         Car.find_by_id(@reservation.car_id).update_attribute(:status, "Reserved")
         format.html { redirect_to @reservation, notice: 'Reservation was successfully created.' }
         format.json { render :show, status: :created, location: @reservation }
