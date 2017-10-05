@@ -26,6 +26,8 @@
     <%if @cars%>
       <% @cars.each do |car| %>
         <tr>
+          <%if (car.status == 'Suggestion' && current_customer.role_check != 'customer') ||
+              car.status != 'Suggestion'%>
           <td><%= car.license_plate_number %></td>
           <td><%= car.manufacturer %></td>
           <td><%= car.model %></td>
@@ -36,15 +38,19 @@
           <td><%= link_to 'Show', car %></td>
           <% if current_customer.role_check != 'customer' %>
             <td><%= link_to 'Edit', edit_car_path(car) %></td>
-              <% if car.status!='Available'%>
+              <% if car.status =='Checkedout' || car.status == 'Reserved'%>
                   <td>Car cannot be deleted</td>
-                  <% else %>
-            <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  <%else%>
+                      <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  <% end %>
+              <% if car.status == 'Suggestion'%>
+                      <td><%= link_to 'Approve car suggest', approve_car_path(car.id)%></td>
+              <% end %>
           <% end %>
-          <%end %>
         </tr>
       <% end %>
     <%end%>
+  <%end%>
   </tbody>
 </table>
 
@@ -52,4 +58,6 @@
 
 <%if current_customer.role_check != 'customer'%>
 <%= link_to 'New Car', new_car_path %>
+<%else%>
+    <%= link_to 'Suggest a Car', suggest_car_path%>
 <%end%>

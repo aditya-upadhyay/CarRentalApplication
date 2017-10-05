@@ -19,6 +19,11 @@ class CarsController < ApplicationController
     @car = Car.new
   end
 
+  #GET /suggest
+  def suggest
+    @car = Car.new
+  end
+
   # GET /cars/1/edit
   def edit
   end
@@ -30,10 +35,14 @@ class CarsController < ApplicationController
 
     respond_to do |format|
       if @car.save
-        format.html { redirect_to @car, notice: 'Car was successfully created.' }
+        format.html { redirect_to @car, notice: 'Car is successfully submitted for approval.' }
         format.json { render :show, status: :created, location: @car }
       else
-        format.html { render :new }
+        if current_customer.role_check == 'customer'
+          format.html { render :suggest }
+        else
+          format.html { render :new }
+        end
         format.json { render json: @car.errors, status: :unprocessable_entity }
       end
     end
@@ -63,6 +72,12 @@ class CarsController < ApplicationController
     end
   end
 
+  #GET /approve_car
+  def approve
+    Car.find_by_id(params[:id]).update_attribute(:status, 'Available')
+    flash[:notice]='Car successfully approved.'
+    redirect_to root_path
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_car

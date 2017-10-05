@@ -6,7 +6,7 @@ class Car < ApplicationRecord
   validates :hourly_rental_rate, presence: true, numericality:true
   validates :location, presence: true
   validates :style , presence: true
-  validates :status ,presence: true, inclusion: { in: %w(Available Checkedout Reserved),
+  validates :status ,presence: true, inclusion: { in: %w(Available Checkedout Reserved Suggestion),
                                                  message: "%{value} is not a valid status"}
   after_initialize :init
 

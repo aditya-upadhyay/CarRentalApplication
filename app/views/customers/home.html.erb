@@ -5,13 +5,9 @@
 
     
     <%= link_to 'Manage other Admins', manage_admins_path%>
-
     <%= link_to 'Manage Cars', cars_path%>
-
     <%= link_to 'Manage Reservations', reservations_path%>
-
     <%= link_to 'Manage Customers', customers_path %>
-
 
     <% if current_customer.role_check == 'superadmin' %>
         <%= link_to 'Manage Superadmins', manage_superadmins_path%>

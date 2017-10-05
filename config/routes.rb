@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get '/new_admin', to: 'customers#new_admin'
   get '/new_superadmin', to: 'customers#new_superadmin', :as => 'new_superadmin'
   get '/manage_superadmins', to: 'customers#manage_superadmins'
+  get '/suggest', to: 'cars#suggest', :as => 'suggest_car'
+  get '/approve_car/:id', to: 'cars#approve', :as => 'approve_car'
 
   post '/create_admin', to: 'customers#create_admin', :as => 'create_admin'
   post '/create_superadmin', to: 'customers#create_superadmin', :as => 'create_superadmin'

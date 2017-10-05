@@ -1,0 +1,56 @@
+<h1>Suggest A Car</h1>
+
+<%= form_with(model: @car, local: true) do |form| %>
+    <% if @car.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@car.errors.count, "error") %> prohibited this car from being saved:</h2>
+
+          <ul>
+            <% @car.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :license_plate_number %>
+      <%= form.text_field :license_plate_number, id: :car_license_plate_number %>
+    </div>
+
+    <div class="field">
+      <%= form.label :manufacturer %>
+      <%= form.text_field :manufacturer, id: :car_manufacturer %>
+    </div>
+
+    <div class="field">
+      <%= form.label :model %>
+      <%= form.text_field :model, id: :car_model %>
+    </div>
+
+    <div class="field">
+      <%= form.label :hourly_rental_rate %>
+      <%= form.text_field :hourly_rental_rate, id: :car_hourly_rental_rate %>
+    </div>
+
+    <div class="field">
+      <%= form.label :style %>
+      <%= form.text_field :style, id: :car_style %>
+    </div>
+
+    <div class="field">
+      <%= form.label :location %>
+      <%= form.text_field :location, id: :car_location %>
+    </div>
+
+    <div class="field">
+      <% form.label :status %>
+      <%= form.hidden_field :status, :value => 'Suggestion'%>
+    </div>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+<% end %>
+
+<%= link_to 'Back', cars_path %>
