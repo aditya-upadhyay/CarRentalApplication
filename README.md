@@ -2,7 +2,8 @@
 
 ------------------------------------------*USERS*----------------------------------------------------
 1) Customers
-
+2)Admin
+3)Superadmin
 ------------------------------------------*FUNCTIONALITY*----------------------------------------------------
 1) Customers:
 
@@ -14,28 +15,17 @@
 	- Reserve a car with time constrains
 
 ---------------------------------------------------------------------------------------------------------
+2)Admin
+* Can create other admins
+* Can create , update and delete cars
+* Can manage reservations
+* Can manage customers
 
-
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+----------------------------------------------------------------------------------------------------------
+3)Superadmin
+* Has all functionalities of the admin
+* Can manage other admins and Superadmins
+___________________________________________________________________________________________________________
+Credentials:
+1. Superadmin :- superadmin@mail.com Password: password
+2. Admin :- admin@mail.com Password: password
