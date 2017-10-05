@@ -10,8 +10,19 @@ class CustomersController < ApplicationController
 
   # GET /list_admins
   def list_admins
-    @customers = Customer.find_other_admins(current_customer.id)
-    @user_type = 'Admins'
+    if params[:type] == 'superadmin'
+      @customers = Customer.find_other_superadmins(current_customer.id)
+      @user_type = 'Superadmins'
+    else
+      if current_customer.role_check == 'superadmin'
+        @customers = Customer.find_other_admins(0)
+        @user_type = 'Admins'
+      else
+        @customers = Customer.find_other_admins(current_customer.id)
+        @user_type = 'Admins'
+      end
+    end
+
   end
 
   # GET /customers/1
@@ -27,7 +38,12 @@ class CustomersController < ApplicationController
 
   def new_admin
     @customer = Customer.new
-    @user_type = 'Admin'
+    @user_type = 'admin'
+  end
+
+  def new_superadmin
+    @customer = Customer.new
+    @user_type = 'superadmin'
   end
 
   # GET /customers/1/edit
@@ -39,7 +55,21 @@ class CustomersController < ApplicationController
     @customer.role_check = 'admin'
     respond_to do |format|
       if @customer.save
-        format.html { redirect_to manage_admins_url, notice: 'Customer was successfully created.' }
+        format.html { redirect_to manage_admins_url, notice: 'Admin was successfully created.' }
+        format.json { render :show, status: :created, location: @customer }
+      else
+        format.html { render :new }
+        format.json { render json: @customer.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def create_superadmin
+    @customer = Customer.new(customer_params)
+    @customer.role_check = 'superadmin'
+    respond_to do |format|
+      if @customer.save
+        format.html { redirect_to manage_superadmins_url, notice: 'SuperAdmin was successfully created.' }
         format.json { render :show, status: :created, location: @customer }
       else
         format.html { render :new }
@@ -101,6 +131,12 @@ class CustomersController < ApplicationController
   def manage_admins
 
   end
+
+  #GET /manage_superadmins
+  def manage_superadmins
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_customer

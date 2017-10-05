@@ -2,7 +2,6 @@
 <p id="notice"><%= notice %></p>
 
 <h1><%=@user_type%></h1>
-
     <%if @customers.present?%>
 <table>
   <thead>
@@ -19,7 +18,9 @@
         <td><%= customer.email %></td>
         <td><%= customer.name %></td>
         <td><%= link_to 'Show', customer %></td>
-        <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%if @user_type != 'Superadmins'%>
+          <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%end%>
       </tr>
   <% end %>
   </tbody>
@@ -27,5 +28,12 @@
         <%else%>
           <h3>No other admins</h3>
         <%end%>
-    <%= link_to 'Back to manage admins', manage_admins_path%>
+
+    <% if @user_type == 'Superadmins' %>
+        <%= link_to 'Manage Superadmins', manage_superadmins_path%>
+    <%else%>
+        <%= link_to 'Manage Admins', manage_admins_path%>
+    <%end%>
+
+
 <%end%>

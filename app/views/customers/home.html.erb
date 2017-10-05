@@ -13,8 +13,8 @@
     <%= link_to 'Manage Customers', customers_path %>
 
 
-    <% if current_customer.role_check != 'admin' %>
-        <p> Manage Superadmins</p>
+    <% if current_customer.role_check == 'superadmin' %>
+        <%= link_to 'Manage Superadmins', manage_superadmins_path%>
     <%end%>
 <%else%>
 

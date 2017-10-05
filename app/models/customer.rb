@@ -10,6 +10,11 @@ class Customer < ApplicationRecord
     self.role_check ||= 'customer'
   end
 
+  def self.find_other_superadmins(id)
+    self.where.not(["id = ?", id]).where(["role_check = ?", 'superadmin'])
+  end
+
+
   def self.find_other_admins(id)
     self.where.not(["id = ?", id]).where(["role_check = ?", 'admin'])
   end

@@ -1,0 +1,6 @@
+
+<% if current_customer.role_check == 'superadmin' %>
+    <h2>Manage SuperAdmins</h2>
+    <%= link_to 'Create new SuperAdmin', new_superadmin_path('superadmin')%>
+    <%= link_to 'View other Superadmins', list_superadmins_path('superadmin') %>
+<%end%>

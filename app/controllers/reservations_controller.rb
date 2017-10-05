@@ -44,15 +44,15 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.find_by_id(params[:id])
     @car = Car.find_by_id(@reservation.car_id)
     @user = Customer.find_by_id(@reservation.customer_id)
+    @reservation.update_attribute(:return_time, DateTime.now)
 
-    reservation_duration = ((@reservation.return_time-@reservation.checkout_time)/3600).to_f;
+    reservation_duration = ((@reservation.return_time-@reservation.checkout_time)/3600).to_f.round(2)
     @rental_charges = reservation_duration * @car.hourly_rental_rate
 
 
     @car.update_attribute(:status, 'Available')
     @user.update_attribute(:rental_charges, @rental_charges+@user.rental_charges)
     @reservation.update_attribute(:active, false)
-    @reservation.update_attribute(:return_time, DateTime.now)
     flash[:notice]='Car successfully returned.'
     redirect_to root_path
   end
@@ -63,13 +63,12 @@ class ReservationsController < ApplicationController
 
     @reservation = Reservation.new(reservation_params)
     @reservation.customer = current_customer
-    @reservation.active = true
-    @reservation.car_id = reservation_params[:car_id]
-
-    Car.find_by_id(reservation_params[:car_id]).update_attribute(:status, "Reserved")
+    @reservation.car_id = 1
 
     respond_to do |format|
       if @reservation.save
+        @reservation.active = true
+        Car.find_by_id(@reservation.car_id).update_attribute(:status, "Reserved")
         format.html { redirect_to @reservation, notice: 'Reservation was successfully created.' }
         format.json { render :show, status: :created, location: @reservation }
       else

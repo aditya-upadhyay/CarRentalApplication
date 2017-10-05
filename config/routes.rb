@@ -13,9 +13,14 @@ Rails.application.routes.draw do
   get '/cars/[:id]', to: 'cars#show'
   get '/manage_admins', to: 'customers#manage_admins'
   get '/list_admins', to: 'customers#list_admins'
+  get '/list_admins/:type', to: 'customers#list_admins', :as => 'list_superadmins'
   get '/new_admin', to: 'customers#new_admin'
+  get '/new_superadmin', to: 'customers#new_superadmin', :as => 'new_superadmin'
+  get '/manage_superadmins', to: 'customers#manage_superadmins'
 
   post '/create_admin', to: 'customers#create_admin', :as => 'create_admin'
+  post '/create_superadmin', to: 'customers#create_superadmin', :as => 'create_superadmin'
+
   #root 'customers#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
