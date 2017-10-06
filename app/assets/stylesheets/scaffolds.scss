@@ -64,6 +64,7 @@ div {
   background-color: #f0f0f0;
 
   h2 {
+    display: block;
     text-align: left;
     font-weight: bold;
     padding: 5px 5px 5px 15px;
@@ -81,4 +82,51 @@ div {
 
 label {
   display: block;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #e0e1e2;
+}
+ul {
+  padding:5%;
+  list-style-position: inside;
+  list-style-type: square;
+  background: #3399ff;
+  padding: 20px;
+  align:center;
+}
+ul li {
+  background: #cce5ff;
+  margin: 5px;
+}
+.navbar-link {
+margin-outside: 2%;
+  color: Black;
+  padding : 2%;
+  font-size: 150%;
+  float: Right;
+}
+.navbar2-link {
+  margin-outside: 2%;
+  color: Black;
+  padding : 2%;
+  font-size: 100%;
+  float: Left;
+}
+
+#Welcome{
+  display: block;
+  font-size: 150%;
+
 }

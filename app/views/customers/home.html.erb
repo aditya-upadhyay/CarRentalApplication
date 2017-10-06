@@ -4,19 +4,19 @@
 <% if current_customer.role_check != 'customer' %>
 
     
-    <%= link_to 'Manage other Admins', manage_admins_path%>
-    <%= link_to 'Manage Cars', cars_path%>
-    <%= link_to 'Manage Reservations', reservations_path%>
-    <%= link_to 'Manage Customers', customers_path %>
+    <%= link_to 'Manage other Admins', manage_admins_path , :class => 'navbar2-link'%>
+    <%= link_to 'Manage Cars', cars_path% :class => 'navbar2-link'%>
+    <%= link_to 'Manage Reservations', reservations_path, :class => 'navbar2-link'%>
+    <%= link_to 'Manage Customers', customers_path, :class => 'navbar2-link' %>
 
     <% if current_customer.role_check == 'superadmin' %>
-        <%= link_to 'Manage Superadmins', manage_superadmins_path%>
+        <%= link_to 'Manage Superadmins', manage_superadmins_path,:class => 'navbar2-link'%>
     <%end%>
 <%else%>
 
       <h2>Rental Charge: <%=@current_user.rental_charges%></h2>
-      <td><%= link_to 'Search Cars', cars_path%></td>
-      <td><%= link_to 'View Checkout History', reservations_path%></td>
+      <td><%= link_to 'Search Cars', cars_path, :class => 'navbar2-link'%></td>
+      <td><%= link_to 'View Checkout History', reservations_path, :class => 'navbar2-link'%></td>
     <%if @reservation.present? %>
         <p>
           <strong>Checkout time:</strong>
