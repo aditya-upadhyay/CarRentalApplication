@@ -27,9 +27,14 @@ To reserve a car, go to search cars and select the car you want to book. The car
 3)Superadmin
 * Has all functionalities of the admin
 * Can manage other admins and Superadmins
+
+
 -----------------------------------------* SPECIAL CASES *-------------------------------------------------
+
 * Admin can delete a user with an active reservation and the corresponding reservation is deleted.
 * Admin can delete a car which is used by a reservation and the corresponding reservation is deleted.
+
+
 -----------------------------------------* OTHER NOTES *---------------------------------------------------
 For Scheduling jobs: To check if the car has been returned before return time or if it has been checked out within 30 minutes has been handled by scheduling two tasks in the background. The tasks are defined in lib\tasks\scheduler.rake file. The deployment of the file on heroku requires credit card details. Due to unavailability of a card among the teammates, we have put the file in github for review but has not been incorporated with the application.
 ___________________________________________________________________________________________________________
